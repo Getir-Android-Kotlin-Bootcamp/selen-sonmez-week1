@@ -3,44 +3,69 @@ package com.example.getir_bootcamp_homework
 import java.io.File
 import java.lang.NumberFormatException
 
-class Main {
-
-    fun main(){
-
+    fun main() {
+        // Printing statements demonstrating various code snippets
         println("Sayfa 9) Bootcamp Homework 1")
+        print("Sayfa 9) Print Bootcamp Homework 1")
+        println()
         println("Sayfa 10) Sum of 10 and 5 = ${10.sum(5)}")
         println("Sayfa 11) Increment 10 by 1 =  ${increment(10)}")
-        println("Sayfa 12-13) Instance of a class Car and accessing field brand = ${Car("Mazda","3",2010).brand}")
-        println("Sayfa 15) Between 10 and 5, greater one is = ${maxOf(5,10)}")
+        println(
+            "Sayfa 12-13) Instance of a class Car and accessing field brand = ${
+                Car(
+                    "Mazda",
+                    "3",
+                    2010
+                ).brand
+            }"
+        )
+        println("Sayfa 15) Between 10 and 5, greater one is = ${maxOf(5, 10)}")
         println("Sayfa 16-17) Items in a list:")
-
-        listOf("apple","banana","kiwi").forEach { item ->
+        listOf("apple", "banana", "kiwi").forEach { item ->
             println(item)
         }
-
         println("Sayfa 16-17) Items in a list using ListIterator:")
-        printItemsUsingListIterator(listOf("mazda","mercedes"))
+        printItemsUsingListIterator(listOf("mazda", "mercedes"))
         println("Sayfa 18) When function= ${whenFunction("1")}")
-        println("Sayfa 19) Range from 1-5= ${range(1,5)}")
-        setExample(setOf(1,2,3))
+        println("Sayfa 19) Range from 1-5= ${range(1, 5)}")
+        setExample(setOf(1, 2, 3))
         printNullableString()
         println("Sayfa 22) Type check=  ${typeCheck("String")}")
         println("Sayfa 46) Extension Function. Is 5 even=  ${5.isEven()}")
+        println("Sayfa 47) Current count: ${counterExample()}")
         println("Sayfa 48) Area of Circle= ${Circle(5.0).area()} ")
-        println("Sayfa 48) Area of Rectangle= ${Rectangle(4.0,6.0).area()}")
+        println("Sayfa 48) Area of Rectangle= ${Rectangle(4.0, 6.0).area()}")
+        println("Sayfa 49) ${nullableExample()}")
         println("Sayfa 50) Directory size: ${printFilesSize("Text")}")
-        println("Sayfa 52) First or null example: ${firstOrNullExample(listOf<String>("First element of the List", "Second Element"))}")
+        println(
+            "Sayfa 52) First or null example: ${
+                firstOrNullExample(
+                    listOf<String>(
+                        "First element of the List",
+                        "Second Element"
+                    )
+                )
+            }"
+        )
         println("Sayfa 53-54) If not null example: ${ifNotNullExample("Hello")}")
         println("Sayfa 56-57) Try catch example: ${tryCatchExample("10")}")
-        println("Sayfa 59) Array of minus ones example: ${arrayOfMinusOnesExample(5).contentToString()}" )
+        println("Sayfa 58) The number 8 is ${ifCondition(8)}")
+        println("Sayfa 59) Array of minus ones example: ${arrayOfMinusOnesExample(5).contentToString()}")
+        println("Sayfa 60) The word radar is ${if (singleExpression("radar")) "" else "not "}a palindrome")
         operateTurtle(Turtle())
         println("Sayfa 61) Also example: ${alsoExample("lowercase sentence to uppercase")}")
+        printGenericLists()
+        alsoExample()
+        parametersExample()
         println("Sayfa 68) Greeting message: ${"Hello" greet "Selen"}")
-        println("Sayfa 69) Sum of vectors: ${Pair(3,4) + Pair(1,2)}")
-        println("Sayfa 70) Maximum of numbers: ${findMax(10,20,30)}")
+        println("Sayfa 69) Sum of vectors: ${Pair(3, 4) + Pair(1, 2)}")
+        println("Sayfa 70) Maximum of numbers: ${findMax(10, 20, 30)}")
+        immutableAndMutableExample()
+        nullSafetyExample("Hello")
+        nullSafetyExample(null)
         getSurpriseBoxContents()
         println("Sayfa 76) Nullable content: ${printContent("10")}, ${printContent(10)}")
-        println("Sayfa 77) Vehicle information: ${vehicleInformation()}")
+        println("Sayfa 77-78-79) Vehicle information: ${vehicleInformation()}")
         println("Sayfa 82) For loop example: ${forLoopExample("Hello")} ")
         println("Sayfa 83) Countdown from 5: ${countdown(5)}")
         println("Sayfa 84) Countdown from 5 in do-while loop: ${doWhileCountdown(5)}")
@@ -49,11 +74,146 @@ class Main {
         printBookDetails()
     }
 
+    // Function to demonstrate null safety
+    fun nullSafetyExample(str: String?) {
+        println("Sayfa 72) ")
+        if (str != null) {
+            println("Length of the string is: ${str.length}")
+        } else {
+            println("String is null")
+        }
+    }
+
+    // Function to demonstrate immutable and mutable variables
+    fun immutableAndMutableExample() {
+        println("Sayfa 71)")
+        // mutable variable
+        var mutableVariable: Int = 10
+        mutableVariable = 20 // Reassigning the value
+        println("Mutable variable: $mutableVariable")
+
+        // immutable variable
+        val immutableVariable: Int = 30
+        // immutableVariable = 40 // Error: Val cannot be reassigned
+        println("Immutable variable: $immutableVariable")
+    }
+
+    // Function to greet with default or specified parameters
+    fun greet(name: String = "World", greeting: String = "Hello") {
+        println("$greeting, $name!")
+    }
+
+    // Function to demonstrate parameter usage
+    fun parametersExample() {
+        println("Sayfa 67)")
+        // no arguments
+        greet() // Output: Hello, World!
+
+        // only the 'name' parameter specified
+        greet("Selen")
+
+        // only the 'greeting' parameter specified
+        greet(greeting = "Hi")
+
+        // both parameters specified
+        greet("Jane", "Merhaba")
+
+        // named parameters
+        greet(greeting = "Hola", name = "Maria")
+    }
+
+    // Function to demonstrate also function
+    fun alsoExample() {
+        println("Sayfa 65) ")
+        var age = 18
+
+        var modifiedAge = age.also {
+            it.inc()
+        }
+
+        println("Original Age: $age")
+        println("Modified Age: $modifiedAge")
+    }
+
+    // Function to find the maximum element in a list
+    fun <T : Comparable<T>> findMax(list: List<T>): T? {
+        if (list.isEmpty()) {
+            return null
+        }
+        var max = list[0]
+        for (element in list) {
+            if (element > max) {
+                max = element
+            }
+        }
+        return max
+    }
+
+    // Function to print max elements of different types of lists
+    fun printGenericLists() {
+        println("Sayfa 64) ")
+        val intList = listOf(3, 7, 2, 9, 5)
+        val maxInt = findMax(intList)
+        println("Max int: $maxInt")
+
+        val doubleList = listOf(3.5, 1.2, 5.6, 2.8)
+        val maxDouble = findMax(doubleList)
+        println("Max double: $maxDouble")
+
+        val stringList = listOf("apple", "banana", "orange", "kiwi")
+        val maxString = findMax(stringList)
+        println("Max string: $maxString")
+    }
+
+    // Function to check if a string is a palindrome
+    fun singleExpression(input: String): Boolean = input == input.reversed()
+
+    // Function to check if a number is even
+    fun ifCondition(number: Int): String {
+        val result = if (number % 2 == 0) {
+            "even"
+        } else {
+            "odd"
+        }
+
+        return result
+    }
+
+    // Function to demonstrate nullable types
+    fun nullableExample(): Int? {
+        val nullableString: String? = "Hello, Kotlin"
+
+        val length: Int? = nullableString?.length
+        return length
+    }
+
+    // Function to increment a counter
+    fun counterExample(): Int {
+        Counter.increment()
+        Counter.increment()
+        return Counter.getCount()
+    }
+
+    // Counter object to demonstrate object declaration
+    object Counter {
+        private var count = 0
+
+        fun increment() {
+            count++
+        }
+
+        fun getCount(): Int {
+            return count
+        }
+    }
+
+    // Data class to represent Book
     data class Book(val title: String, val genre: String)
 
+    // Function to print book details
     fun printBookDetails() {
-        println("Sayfa 92) ")
-        val book2 = Book("Dune",genre = "Sci-fi")
+        println("Sayfa 90-91-92) ")
+        val book2 = Book("Dune", genre = "Sci-fi")
         println("Book 2: Title: ${book2.title}, Genre: ${book2.genre}")
         val copiedBook = book2.copy()
         println("Copied book: $copiedBook")
@@ -101,7 +261,7 @@ class Main {
         do {
             countdownNumbers.add(count)
             count++
-        }  while (count < seconds)
+        } while (count < seconds)
         return countdownNumbers
     }
 
@@ -301,5 +461,3 @@ class Main {
         "3" -> 3
         else -> -1
     }
-
-}
